@@ -1,13 +1,12 @@
 import random
-import numpy as np
-from collections import defaultdict
-import matplotlib.pyplot as plt
 
-def quickselect(liste, k):
+def quickselect(array, k):
+    """ 
+    Return the k-th smallest element of the array (indices start at 1)
+    """
     n = k-1
-    nb_iterations = 0
 
-    def partition(array, left, right, pivotIndex):
+    def partition(left, right, pivotIndex):
         pivotValue = array[pivotIndex]
         # Move pivot to end
         array[pivotIndex], array[right] = array[right], array[pivotIndex]
@@ -20,44 +19,30 @@ def quickselect(liste, k):
         array[right], array[storeIndex] = array[storeIndex], array[right]
         return storeIndex
 
-    def select(array, left, right, n):
-        nonlocal nb_iterations
-        nb_iterations += 1
+    def select(left, right):
         if left == right:
             return array[left]
         pivotIndex = random.randint(left, right)
-        pivotIndex = partition(array, left, right, pivotIndex)
+        pivotIndex = partition(left, right, pivotIndex)
         # The pivot is in its final sorted position
         if n == pivotIndex:
             return array[n]
         elif n < pivotIndex:
-            return select(array, left, pivotIndex-1, n)
+            return select(left, pivotIndex-1)
         else:
-            return select(array, pivotIndex+1, right, n)
+            return select(pivotIndex+1, right)
         
-    selection = select(liste, 0, len(liste)-1, n)
-    return selection, nb_iterations 
+    return select(0, len(array)-1)
     
-results = defaultdict(list)    
-example_sizes = range(100, 5000, 200)
-nb_example_by_size = 500
-for example_size in example_sizes:
-    print(example_size)
-    example = list(range(1, example_size+1))
-    example_median_index = 1 + int(example_size/2)
-    example_median = int(np.median(example))
-    for i in range(nb_example_by_size):
-        random.shuffle(example)
-        median, nb_iteration = quickselect(example, example_median_index)
-        results[example_size].append(nb_iteration)
-        if median != example_median_index:
-            print("problem")
-        
-data = [values for example_size, values in results.items()]
-plt.violinplot(data)
+# Main example
+def main():
+    example_array = list(range(1, 11+1))
+    print("Initial array:  %s" % str(example_array))
+    random.shuffle(example_array)
+    print("Shuffled array: %s" % str(example_array))
+    print("Median: %d" % quickselect(example_array, 6))
+    print("Smallest: %d" % quickselect(example_array, 1))
+    print("Biggest: %d" % quickselect(example_array, 11))
 
-#for example_size, values in results.items():
-#    plt.violinplot(values)
-
-plt.legend(loc=0)
-plt.show()
+if __name__ == "__main__":
+    main()
