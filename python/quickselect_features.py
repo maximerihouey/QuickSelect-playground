@@ -57,7 +57,7 @@ pivots = [("random", pivot_random)]
 # Computation
 example_sizes = range(100, 5000, 100)
 example_sizes = [50, 75, 100, 250, 500, 750, 1000, 1500, 2000, 3000, 4000, 5000, 7500, 9000, 10000]
-nb_example_by_size = 100
+nb_example_by_size = 500
 colors = ["b", "r", "g", "y"]
 
 confidence_intervals = defaultdict(lambda : defaultdict(list))
