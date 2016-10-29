@@ -34,7 +34,7 @@ object Quickselect {
     if(n == pivotIndex) {
       return array(n);
     } else if(n < pivotIndex) {
-      return select(array, left, pivotIndex+1, n);
+      return select(array, left, pivotIndex-1, n);
     }else{
       return select(array, pivotIndex+1, right, n);
     }
