@@ -20,9 +20,7 @@ Schematically each implementation consist in a file "Quickselect" (with the impl
 
 For each implementation executing the "Benchmark" will output a file "benchmark_results.txt" in the implementation's directory. Those results are then aggregated by the "benchmark.py" script at the root of the repositiory in order to produce the graph.
 
-```diff
-- The methods detailed below might not be the best way of compiling/executing thoses type of scripts, those are indications of how those files were tested during their writing
-```
+<b>Caution:</b> The methods detailed below might not be the best way of compiling/executing thoses type of scripts, those are just indications of how those files were tested during their writing
 
 ### Python
 
@@ -62,9 +60,7 @@ quickselect-playground/scala$ <b>$SPARK_HOME/bin/spark-submit --class "io.github
 The code is written in Java 1.8 (1.8.0_101).
 
 We need first to compile the source code
-```diff
-- Caution: this is executed from java/src folder,
-```
+<b>Caution:</b> this is executed from java/src folder
 <pre>
 quickselect-playground/java/src$ <b>javac io/github/maximerihouey/Quickselect.java io/github/maximerihouey/Benchmark.java</b>
 </pre>
