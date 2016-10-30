@@ -59,8 +59,7 @@ quickselect-playground/scala$ <b>$SPARK_HOME/bin/spark-submit --class "io.github
 
 The code is written in Java 1.8 (1.8.0_101).
 
-We need first to compile the source code
-<b>Caution:</b> this is executed from java/src folder
+We need first to compile the source code. <b>Caution:</b> this is executed from java/src folder
 <pre>
 quickselect-playground/java/src$ <b>javac io/github/maximerihouey/Quickselect.java io/github/maximerihouey/Benchmark.java</b>
 </pre>
