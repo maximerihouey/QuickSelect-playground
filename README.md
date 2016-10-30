@@ -16,25 +16,61 @@ The implementations of the algorithm are compared by computing the median of lis
 
 ## Executing the benchmark
 
+Schematically each implementation consist in a file "Quickselect" (with the implementation of the algorithm) and a file "Benchmark" that uses "Quickselect" as a library to conduct the benchmark.
+
+For each implementation executing the "Benchmark" will output a file "benchmark_results.txt" in the implementation's directory. Those results are then aggregated by the "benchmark.py" script at the root of the repositiory in order to produce the graph.
+
+```diff
+- The methods detailed below might not be the best way of compiling/executing thoses type of scripts, those are indications of how those files were tested during their writing
+```
+
 ### Python
 
-The code is written in Python 3 (3.5)
+The code is written in Python 3.5 (3.5.2)
 <pre>
 quickselect-playground/python$ <b>python benchmark.py</b>
-<pre>
+</pre>
 
 ### Cython
 
 For Cython we first need to build the Cython file of the QuickSelect library (to know more about Cython [Go here](http://docs.cython.org/en/latest/src/tutorial/cython_tutorial.html))
-```
-quickselect-playground/cython$ python setup.py build_ext --inplace
-```
+<pre>
+quickselect-playground/cython$ <b>python setup.py build_ext --inplace</b>
+</pre>
 
-Then we can just call the banchmark python file (which is identical to the python implemention)
-```
-quickselect-playground/cython$ python benchmark.py
-```
+Then we can just call the benchmark python file (which is identical to the python implemention)
+<pre>
+quickselect-playground/cython$ <b>python benchmark.py</b>
+</pre>
 
 ### Scala
 
+The code is written in Scala 2.11 (2.11.8) and SBT 0.13 (0.13.8).
+
+We need first to compile the source code
+<pre>
+quickselect-playground/scala$ <b>sbt clean package</b>
+</pre>
+
+Then to execute the benchmark,
+<pre>
+quickselect-playground/scala$ <b>$SPARK_HOME/bin/spark-submit --class "io.github.maximerihouey.Benchmark" target/scala-2.11/scala_2.11-1.0.jar</b>
+</pre>
+
+### Java
+
+The code is written in Java 1.8 (1.8.0_101).
+
+We need first to compile the source code
+```diff
+- Caution: this is executed from java/src folder,
+```
+<pre>
+quickselect-playground/java/src$ <b>javac io/github/maximerihouey/Quickselect.java io/github/maximerihouey/Benchmark.java</b>
+</pre>
+
+Then to execute the benchmark,
+<pre>
+quickselect-playground/java/src$ <b>java io.github.maximerihouey.Benchmark</b>
+</pre>
 
