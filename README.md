@@ -2,7 +2,7 @@
 
 The QuickSelect algorithm alloys to find the k-th smallest element of an unordered list, yielding performances on-average better than if we had to previously order the list. This algorithm is particularly usefull when computing the median of an unordered list. For more explanations see the Wikipedia article [Quickselect](https://en.wikipedia.org/wiki/Quickselect).
 
-This repository contains several implementation of the Quickselect algorithm:
+This repository contains several implementations of the Quickselect algorithm:
 - Python
 - Cython
 - Scala
@@ -19,20 +19,22 @@ The implementations of the algorithm are compared by computing the median of lis
 ### Python
 
 The code is written in Python 3 (3.5)
-``` 
-quickselect-playground/python$ python benchmark.py
-```
+<pre>
+quickselect-playground/python$ <b>python benchmark.py</b>
+<pre>
 
 ### Cython
 
 For Cython we first need to build the Cython file of the QuickSelect library (to know more about Cython [Go here](http://docs.cython.org/en/latest/src/tutorial/cython_tutorial.html))
 ```
-python setup.py build_ext --inplace
+quickselect-playground/cython$ python setup.py build_ext --inplace
 ```
 
 Then we can just call the banchmark python file (which is identical to the python implemention)
 ```
-python benchmark.py
+quickselect-playground/cython$ python benchmark.py
 ```
+
+### Scala
 
 
