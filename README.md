@@ -7,12 +7,15 @@ This repository contains several implementations of the Quickselect algorithm:
 - Cython
 - Scala
 - Java
+- C
 
 ## Comparing the mean execution time
 
 The implementations of the algorithm are compared by computing the median of lists of different sizes. For each list size we build the array `[1, ..., list_size]` and time the execution of 250 Quickselect computations, the array is shuffle between each computation, the mean of those computations represent the mean execution time for that algorithm.
 
 ![Benchmark](https://github.com/maximerihouey/QuickSelect-playground/blob/master/quickselect_benchmark.png)
+
+The C-implementation seems to be doing worse than the Scala and Java implementations (which are non suprinsingly yielding similar performances), I believe this is because the method used to measure execution times in C is not adequat.
 
 ## Executing the benchmark
 
@@ -69,3 +72,18 @@ Then to execute the benchmark,
 quickselect-playground/java/src$ <b>java io.github.maximerihouey.Benchmark</b>
 </pre>
 
+### C
+
+The code is compiled using Gcc 4.9.3.
+
+We first compile the quickselect as a library, the benchmark script and then linking everything together in an executable file
+<pre>
+quickselect-playground/C$ <b>gcc -c quickselect.c -o quickselect.o</b>
+quickselect-playground/C$ <b>gcc -c benchmark.c -o benchmark.o</b>
+quickselect-playground/C$ <b>gcc benchmark.o quickselect.o -o benchmark</b>
+</pre>
+
+To execute the "benchmark" file one can just do
+<pre>
+quickselect-playground/C$ <b>./benchmark</b>
+</pre>
