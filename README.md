@@ -87,3 +87,11 @@ To execute the "benchmark" file one can just do
 <pre>
 quickselect-playground/C$ <b>./benchmark</b>
 </pre>
+
+### R
+
+The code is written in R 3.3 (3.3.1)
+
+<pre>
+quickselect-playground/R$ <b>Rscript benchmark.R</b>
+</pre>
