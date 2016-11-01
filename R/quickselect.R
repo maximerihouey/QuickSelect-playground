@@ -1,3 +1,5 @@
+library(compiler)
+
 newPointer=function(inputValue){  
   object=new.env(parent=globalenv())  
   object$value=inputValue  
@@ -6,13 +8,14 @@ newPointer=function(inputValue){
   return(object)  
 }
 
-switcharoo = function(tableau, index1, index2){
+switcharoo_u = function(tableau, index1, index2){
   temp = tableau$value[index1]
   tableau$value[index1] = tableau$value[index2]
   tableau$value[index2] = temp
 }
+switcharoo = cmpfun(switcharoo_u)
 
-partition = function(tableau, left, right, pivotIndex){
+partition_u = function(tableau, left, right, pivotIndex){
   pivotValue = tableau$value[pivotIndex]
   storeIndex = left
   switcharoo(tableau, pivotIndex, right)
@@ -25,8 +28,9 @@ partition = function(tableau, left, right, pivotIndex){
   switcharoo(tableau, storeIndex, right)
   return(storeIndex)
 }
+partition = cmpfun(partition_u)
 
-qselect = function(tableau, left, right, n){
+qselect_u = function(tableau, left, right, n){
   if(left == right){
     return(tableau$value[left])
   }
@@ -40,11 +44,9 @@ qselect = function(tableau, left, right, n){
     return(qselect(tableau, pivotIndex+1, right, n))
   }
 }
+qselect = cmpfun(qselect_u)
 
-quickselect = function(tableau, k){
+quickselect_u = function(tableau, k){
   return(return(qselect(tableau, 1, length(tableau$value), k)))
 }
-
-example_size = 11
-example = newPointer(array(c(1:example_size)))
-print(quickselect(example, 6))
+quickselect = cmpfun(quickselect_u)
