@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "quickselect.h"
 
 void switcharoo(int *array, int index1, int index2) {
     int temp = array[index1];
@@ -44,21 +45,4 @@ int qselect(int *array, int left, int right, int n) {
 
 int quickselect(int *array, int array_size, int k){
     return qselect(array, 0, array_size-1, k-1);
-}
-
-int main(void)
-{
-    int i;
-    int example_size = 11;
-    int *example = (int *)malloc(sizeof(int) * example_size);
-
-    for(i=0; i < example_size; i = i + 1 ){
-        example[i] = example_size - i;
-    }
-    for(i=0; i < example_size; i = i + 1 ){
-        printf("%i\n", example[i]);
-    }
-
-    printf("%i\n", quickselect(example, example_size, 6));
-
 }
